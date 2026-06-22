@@ -7,12 +7,12 @@ const chapter = {
   title: 'LeetCode · Easy',
   subtitle: 'Your first real interview problems',
   color: '#ce82ff',
-  emoji: '🧠',
+  icon: 'brain',
   lessons: [
     {
       id: 'lc-twosum',
       title: 'Two Sum',
-      icon: '➕',
+      icon: 'plus',
       xp: 25,
       steps: [
         {
@@ -73,7 +73,7 @@ const chapter = {
     {
       id: 'lc-palindrome-num',
       title: 'Palindrome Number',
-      icon: '🪞',
+      icon: 'mirror',
       xp: 22,
       steps: [
         {
@@ -127,7 +127,7 @@ const chapter = {
     {
       id: 'lc-valid-anagram',
       title: 'Valid Anagram',
-      icon: '🔠',
+      icon: 'abc',
       xp: 24,
       steps: [
         {
@@ -187,7 +187,7 @@ const chapter = {
     {
       id: 'lc-contains-dup',
       title: 'Contains Duplicate',
-      icon: '♻️',
+      icon: 'recycle',
       xp: 20,
       steps: [
         {
@@ -231,7 +231,7 @@ const chapter = {
     {
       id: 'lc-best-stock',
       title: 'Best Time to Buy & Sell Stock',
-      icon: '📈',
+      icon: 'trend',
       xp: 28,
       steps: [
         {
@@ -286,7 +286,7 @@ const chapter = {
     {
       id: 'lc-valid-palindrome',
       title: 'Valid Palindrome',
-      icon: '🔁',
+      icon: 'loop',
       xp: 26,
       steps: [
         {

@@ -69,7 +69,7 @@ code, pre, .editor { font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 
 .brand-logo { font-size: 26px; }
 .brand-name { font-weight: 900; font-size: 22px; color: var(--green); letter-spacing: -0.5px; }
 .stats { display: flex; gap: 14px; font-weight: 800; }
-.stat { font-size: 16px; }
+.stat { font-size: 16px; display: flex; align-items: center; gap: 4px; }
 .tagline { text-align: center; color: var(--muted); font-weight: 700; margin: 16px 8px 8px; }
 
 .chapter { margin-top: 28px; }
@@ -78,7 +78,7 @@ code, pre, .editor { font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 
   color: #fff; border-radius: 18px; padding: 16px 18px;
   box-shadow: 0 4px 0 rgba(0,0,0,0.12);
 }
-.chapter-emoji { font-size: 34px; }
+.chapter-icon { font-size: 34px; display: flex; align-items: center; }
 .chapter-banner h2 { margin: 0; font-size: 19px; }
 .chapter-banner p { margin: 2px 0 0; font-size: 13px; opacity: 0.92; font-weight: 700; }
 
@@ -105,7 +105,7 @@ code, pre, .editor { font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 
 
 .node-label { display: flex; flex-direction: column; }
 .node-title { font-weight: 800; font-size: 14px; }
-.node-stars { font-size: 12px; }
+.node-stars { font-size: 12px; display: flex; gap: 2px; }
 
 .home-footer { text-align: center; margin-top: 40px; color: var(--muted); }
 .home-footer p { font-weight: 700; margin: 6px 0; }
@@ -121,7 +121,7 @@ code, pre, .editor { font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 
 .quit { background: none; border: none; font-size: 22px; color: var(--muted); cursor: pointer; font-weight: 800; }
 .progress-bar { flex: 1; height: 14px; background: var(--line); border-radius: 10px; overflow: hidden; }
 .progress-fill { height: 100%; background: var(--green); border-radius: 10px; transition: width 0.3s; }
-.hearts { font-size: 13px; white-space: nowrap; }
+.hearts { font-size: 16px; display: flex; gap: 3px; align-items: center; }
 
 .lesson-body { flex: 1; padding: 12px 18px 24px; }
 .lesson-footer { padding: 16px 18px 28px; border-top: 2px solid var(--line); position: sticky; bottom: 0; background: var(--bg); }
@@ -211,9 +211,9 @@ code, pre, .editor { font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 
 
 /* ---------- Lesson done ---------- */
 .lesson-done { text-align: center; padding: 60px 24px; display: flex; flex-direction: column; align-items: center; gap: 6px; min-height: 100vh; justify-content: center; }
-.done-emoji { font-size: 64px; }
+.done-icon { font-size: 64px; }
 .lesson-done h1 { font-size: 28px; margin: 8px 0; }
-.stars-big { font-size: 32px; letter-spacing: 6px; }
+.stars-big { font-size: 32px; display: flex; gap: 6px; }
 .done-xp { font-size: 22px; font-weight: 900; color: var(--orange); }
 .done-sub { color: var(--muted); font-weight: 700; }
 .lesson-done .btn { margin-top: 20px; width: 100%; max-width: 320px; }

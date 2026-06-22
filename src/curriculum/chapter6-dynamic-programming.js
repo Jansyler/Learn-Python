@@ -7,12 +7,12 @@ const chapter = {
   title: 'Dynamic Programming',
   subtitle: 'Build big answers from small ones',
   color: '#7c4dff',
-  emoji: '🧬',
+  icon: 'dna',
   lessons: [
     {
       id: 'lc-climb-stairs',
       title: 'Climbing Stairs',
-      icon: '🪜',
+      icon: 'stairs',
       xp: 30,
       steps: [
         {
@@ -70,7 +70,7 @@ const chapter = {
     {
       id: 'lc-house-robber',
       title: 'House Robber',
-      icon: '🏠',
+      icon: 'house',
       xp: 36,
       steps: [
         {
@@ -118,7 +118,7 @@ const chapter = {
     {
       id: 'lc-coin-change',
       title: 'Coin Change',
-      icon: '🪙',
+      icon: 'coin',
       xp: 44,
       steps: [
         {

@@ -1,4 +1,4 @@
-# 🐍 PyLingo — Learn Python the Duolingo way
+# PyLingo — Learn Python the Duolingo way
 
 **Free. Forever. For everyone.**
 
@@ -13,16 +13,16 @@ run and grade your code instantly, right on your phone.
 
 ---
 
-## ✨ What it does
+## What it does
 
 - **A learning path, Duolingo-style.** Chapters unlock lesson by lesson. Each
   node shows your stars; finish one to open the next.
 - **Lessons are a mix of step types**, so it never feels like a lecture:
-  - 📖 **Concept cards** — short, plain-English explanations with example code
-  - ✅ **Multiple choice** — quick understanding checks
-  - 🔮 **Predict the output** — read code, guess what it prints
-  - ⌨️ **Fill in the blank** — complete the missing piece
-  - 🧠 **Code challenges** — write real Python, run it against hidden test cases
+  - **Concept cards** — short, plain-English explanations with example code
+  - **Multiple choice** — quick understanding checks
+  - **Predict the output** — read code, guess what it prints
+  - **Fill in the blank** — complete the missing piece
+  - **Code challenges** — write real Python, run it against hidden test cases
 - **Real Python, in your browser.** Code challenges execute actual CPython via
   [Pyodide](https://pyodide.org) (Python compiled to WebAssembly). Your solution
   is run against multiple test cases and graded — no backend, no API keys, no
@@ -35,7 +35,7 @@ run and grade your code instantly, right on your phone.
 
 ---
 
-## 🧱 How it's made (the stack)
+## How it's made (the stack)
 
 PyLingo is intentionally a **small, readable codebase** — it's also meant to be
 a thing you can learn *from*.
@@ -77,18 +77,21 @@ pylingo/
     │   ├── chapter4-leetcode-medium.js
     │   ├── chapter5-stack-search.js
     │   ├── chapter6-dynamic-programming.js
-    │   └── chapter7-math-bits.js
+    │   ├── chapter7-math-bits.js
+    │   ├── chapter8-two-pointers.js
+    │   └── chapter9-sliding-window.js
     └── components/
         ├── App.jsx            # routes between Home and a Lesson
         ├── Home.jsx           # the learning path / tree
         ├── Lesson.jsx         # the lesson player (steps, hearts, XP)
         ├── CodeChallenge.jsx  # the in-browser code editor + grader
+        ├── icons.jsx          # SVG icon library
         └── ui.jsx             # tiny shared bits (markdown-lite, buttons)
 ```
 
 ---
 
-## 🚀 Run it
+## Run it
 
 ```bash
 cd pylingo
@@ -124,13 +127,13 @@ straight from a phone browser — these work even with a **private** repo:
 Both read the config automatically (the app lives in `pylingo/`, and the config
 points the build there). Open the URL on your phone and **Add to Home Screen**.
 
-> ⚠️ The **first** time you open a code challenge, the browser downloads the
+> **Note:** The first time you open a code challenge, the browser downloads the
 > Python runtime, so that one needs an internet connection. After that it's
 > cached.
 
 ---
 
-## 🗺️ The curriculum (and the road to full LeetCode coverage)
+## The curriculum (and the road to full LeetCode coverage)
 
 The course is built as a **topic-based roadmap** (inspired by Blind 75 /
 NeetCode 150 and the classic LeetCode patterns), so the order teaches you
@@ -138,16 +141,16 @@ NeetCode 150 and the classic LeetCode patterns), so the order teaches you
 
 | Chapter | Theme | Status |
 |--------|-------|--------|
-| 1. Python Basics | print, variables, types, math, strings, booleans, if, loops, functions, lists, dicts | ✅ |
-| 2. Pythonic Tools | slicing, comprehensions, sets, enumerate/zip | ✅ |
-| 3. LeetCode · Easy | Two Sum, Palindrome Number, Valid Anagram, Contains Duplicate, Best Time to Buy & Sell Stock, Valid Palindrome | ✅ |
-| 4. LeetCode · Medium | Maximum Subarray, Group Anagrams, Longest Substring Without Repeats, Product of Array Except Self | ✅ |
-| 5. Stack & Binary Search | Valid Parentheses, Binary Search, Daily Temperatures | ✅ |
-| 6. Dynamic Programming | Climbing Stairs, House Robber, Coin Change | ✅ |
-| 7. Math & Bit Tricks | Fizz Buzz, Single Number, Reverse Integer | ✅ |
-| 8. Two Pointers | Two Sum II, Valid Palindrome II, Container With Most Water, 3Sum | ✅ |
-| 9. Sliding Window | Minimum Size Subarray Sum, Longest Repeating Char Replacement, Find All Anagrams | ✅ |
-| 10+. Linked Lists, Trees, Tries, Heaps, Backtracking, Graphs, Greedy, Intervals, Advanced DP | the rest of the ~150–200 canonical problems | 🚧 growing |
+| 1. Python Basics | print, variables, types, math, strings, booleans, if, loops, functions, lists, dicts | done |
+| 2. Pythonic Tools | slicing, comprehensions, sets, enumerate/zip | done |
+| 3. LeetCode · Easy | Two Sum, Palindrome Number, Valid Anagram, Contains Duplicate, Best Time to Buy & Sell Stock, Valid Palindrome | done |
+| 4. LeetCode · Medium | Maximum Subarray, Group Anagrams, Longest Substring Without Repeats, Product of Array Except Self | done |
+| 5. Stack & Binary Search | Valid Parentheses, Binary Search, Daily Temperatures | done |
+| 6. Dynamic Programming | Climbing Stairs, House Robber, Coin Change | done |
+| 7. Math & Bit Tricks | Fizz Buzz, Single Number, Reverse Integer | done |
+| 8. Two Pointers | Two Sum II, Valid Palindrome II, Container With Most Water, 3Sum | done |
+| 9. Sliding Window | Minimum Size Subarray Sum, Longest Repeating Char Replacement, Find All Anagrams | done |
+| 10+. Linked Lists, Trees, Tries, Heaps, Backtracking, Graphs, Greedy, Intervals, Advanced DP | the rest of the ~150–200 canonical problems | in progress |
 
 **An honest note on "all 200 problems":** the goal is full coverage of the
 canonical interview set, and the engine already supports it — but every problem
@@ -159,7 +162,7 @@ problem is deliberately a ~5-minute job (see below), so this list grows fast.
 
 ---
 
-## ➕ Add a lesson or problem (it's just data)
+## Add a lesson or problem (it's just data)
 
 A lesson is a plain object. To add a coding problem, drop a `code` step into any
 chapter's `lessons` array:
@@ -195,15 +198,15 @@ Grading modes the runtime supports:
 - **`expectedStdout`** — checks what your code *prints* (great for the basics).
 
 That's it — no test harness to write. Contributions that add well-explained
-problems toward the roadmap are exactly the point of this project. 💚
+problems toward the roadmap are exactly the point of this project.
 
 ---
 
-## 🙌 Why free?
+## Why free?
 
 Learning to code shouldn't be gated behind a subscription. PyLingo is built to
 be hosted for nothing and used by anyone — a student on a cheap phone, someone
 switching careers, or you, replacing five minutes of scrolling with five minutes
 of getting sharper. Share it, fork it, add problems to it.
 
-Happy hacking. 🐍
+Happy hacking.

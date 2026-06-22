@@ -8,12 +8,12 @@ const chapter = {
   title: 'Sliding Window',
   subtitle: 'A moving range over your data',
   color: '#f59e0b',
-  emoji: '🪟',
+  icon: 'window',
   lessons: [
     {
       id: 'lc-min-subarray',
       title: 'Minimum Size Subarray Sum',
-      icon: '📏',
+      icon: 'ruler',
       xp: 38,
       steps: [
         {
@@ -70,7 +70,7 @@ const chapter = {
     {
       id: 'lc-char-replacement',
       title: 'Longest Repeating Char Replacement',
-      icon: '🔁',
+      icon: 'loop',
       xp: 46,
       steps: [
         {
@@ -118,7 +118,7 @@ const chapter = {
     {
       id: 'lc-find-anagrams',
       title: 'Find All Anagrams in a String',
-      icon: '🧩',
+      icon: 'puzzle',
       xp: 46,
       steps: [
         {

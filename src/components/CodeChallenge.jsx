@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { RichText, CodeBlock, Button } from './ui.jsx'
+import { Icon } from './icons.jsx'
 import { runChallenge } from '../runtime/python.js'
 
 // One interactive coding problem: editor + run-against-tests + reveal solution.
@@ -82,7 +83,10 @@ export default function CodeChallenge({ step, onSolved }) {
 
       {step.approach && (
         <div className="approach">
-          <span className="approach-label">💡 Approach</span>
+          <span className="approach-label">
+            <Icon name="bulb" style={{ verticalAlign: 'middle', marginRight: '0.3em' }} />
+            Approach
+          </span>
           <RichText text={step.approach} />
         </div>
       )}
@@ -115,7 +119,10 @@ export default function CodeChallenge({ step, onSolved }) {
       {step.hints && hintsShown > 0 && (
         <div className="hints">
           {step.hints.slice(0, hintsShown).map((h, i) => (
-            <div className="hint" key={i}>👉 {h}</div>
+            <div className="hint" key={i}>
+              <Icon name="arrowRight" style={{ verticalAlign: 'middle', marginRight: '0.4em', flexShrink: 0 }} />
+              {h}
+            </div>
           ))}
         </div>
       )}
@@ -130,11 +137,15 @@ export default function CodeChallenge({ step, onSolved }) {
           ) : (
             <>
               <div className="run-headline">
-                {result.ok ? '✅ All tests passed!' : '❌ Some tests failed'}
+                <Icon name={result.ok ? 'checkCircle' : 'xCircle'}
+                  style={{ verticalAlign: 'middle', marginRight: '0.4em' }} />
+                {result.ok ? 'All tests passed!' : 'Some tests failed'}
               </div>
               {result.cases.map((c, i) => (
                 <div className={`case ${c.passed ? 'pass' : 'fail'}`} key={i}>
-                  <span className="case-dot">{c.passed ? '✓' : '✗'}</span>
+                  <span className="case-dot">
+                    <Icon name={c.passed ? 'check' : 'x'} size="0.9em" />
+                  </span>
                   <span className="case-body">
                     {c.label ? c.label : <code>{prettyArgs(c.input)}</code>}
                     {' → got '}

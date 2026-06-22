@@ -6,12 +6,12 @@ const chapter = {
   title: 'Pythonic Tools',
   subtitle: 'Slicing, comprehensions, sets & more',
   color: '#1cb0f6',
-  emoji: '⚙️',
+  icon: 'gear',
   lessons: [
     {
       id: 'b2-slicing',
       title: 'Slicing',
-      icon: '🔪',
+      icon: 'cut',
       xp: 16,
       steps: [
         {
@@ -51,7 +51,7 @@ const chapter = {
     {
       id: 'b2-comprehensions',
       title: 'List Comprehensions',
-      icon: '✨',
+      icon: 'sparkle',
       xp: 18,
       steps: [
         {
@@ -91,7 +91,7 @@ const chapter = {
     {
       id: 'b2-sets',
       title: 'Sets',
-      icon: '🎯',
+      icon: 'target',
       xp: 16,
       steps: [
         {
@@ -131,7 +131,7 @@ const chapter = {
     {
       id: 'b2-enumerate',
       title: 'enumerate & zip',
-      icon: '🔗',
+      icon: 'link',
       xp: 16,
       steps: [
         {

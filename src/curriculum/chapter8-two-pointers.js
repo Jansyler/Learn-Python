@@ -7,12 +7,12 @@ const chapter = {
   title: 'Two Pointers',
   subtitle: 'Squeeze from both ends',
   color: '#06b6d4',
-  emoji: '👉',
+  icon: 'pointer',
   lessons: [
     {
       id: 'lc-two-sum-ii',
       title: 'Two Sum II (Sorted)',
-      icon: '➕',
+      icon: 'plus',
       xp: 30,
       steps: [
         {
@@ -63,7 +63,7 @@ const chapter = {
     {
       id: 'lc-valid-palindrome-ii',
       title: 'Valid Palindrome II',
-      icon: '🪞',
+      icon: 'mirror',
       xp: 34,
       steps: [
         {
@@ -112,7 +112,7 @@ const chapter = {
     {
       id: 'lc-container-water',
       title: 'Container With Most Water',
-      icon: '🪣',
+      icon: 'bucket',
       xp: 38,
       steps: [
         {
@@ -169,7 +169,7 @@ const chapter = {
     {
       id: 'lc-3sum',
       title: '3Sum',
-      icon: '3️⃣',
+      icon: 'three',
       xp: 48,
       steps: [
         {

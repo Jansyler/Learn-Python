@@ -6,12 +6,12 @@ const chapter = {
   title: 'LeetCode · Medium',
   subtitle: 'Patterns that win interviews',
   color: '#ff9600',
-  emoji: '🚀',
+  icon: 'rocket',
   lessons: [
     {
       id: 'lc-max-subarray',
       title: 'Maximum Subarray',
-      icon: '📊',
+      icon: 'chart',
       xp: 35,
       steps: [
         {
@@ -72,7 +72,7 @@ const chapter = {
     {
       id: 'lc-group-anagrams',
       title: 'Group Anagrams',
-      icon: '🧺',
+      icon: 'basket',
       xp: 38,
       steps: [
         {
@@ -132,7 +132,7 @@ const chapter = {
     {
       id: 'lc-longest-substring',
       title: 'Longest Substring Without Repeats',
-      icon: '🪟',
+      icon: 'window',
       xp: 42,
       steps: [
         {
@@ -195,7 +195,7 @@ const chapter = {
     {
       id: 'lc-product-except-self',
       title: 'Product of Array Except Self',
-      icon: '✖️',
+      icon: 'multiply',
       xp: 40,
       steps: [
         {
