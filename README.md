@@ -56,8 +56,12 @@ free to host and free to run.
 ### Project layout
 
 ```
-pylingo/
+learn-python/               ← repo root
 ├── index.html
+├── vite.config.js
+├── package.json
+├── vercel.json
+├── netlify.toml
 ├── public/
 │   ├── manifest.webmanifest   # makes it installable
 │   ├── sw.js                  # service worker (offline shell)
@@ -91,7 +95,6 @@ pylingo/
 ## 🚀 Run it
 
 ```bash
-cd pylingo
 npm install
 npm run dev
 ```
@@ -121,8 +124,7 @@ straight from a phone browser — these work even with a **private** repo:
 - **Vercel** (`vercel.json`): go to [vercel.com/new](https://vercel.com/new) →
   import this repo → **Deploy**. You get a `https://<name>.vercel.app` URL.
 
-Both read the config automatically (the app lives in `pylingo/`, and the config
-points the build there). Open the URL on your phone and **Add to Home Screen**.
+Both read the config automatically (the build runs from the repo root and outputs to `dist/`). Open the URL on your phone and **Add to Home Screen**.
 
 > ⚠️ The **first** time you open a code challenge, the browser downloads the
 > Python runtime, so that one needs an internet connection. After that it's
