@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { RichText, CodeBlock, Button } from './ui.jsx'
 import { Icon } from './icons.jsx'
 import { runChallenge } from '../runtime/python.js'
@@ -12,20 +12,63 @@ export default function CodeChallenge({ step, onSolved }) {
   const [hintsShown, setHintsShown] = useState(0)
   const [showSolution, setShowSolution] = useState(false)
   const [passed, setPassed] = useState(false)
+  const taRef = useRef(null)
 
-  const handleTab = (e) => {
+  // Apply new editor contents and place the caret, keeping React in control.
+  const apply = (next, caret) => {
+    setCode(next)
+    requestAnimationFrame(() => {
+      const el = taRef.current
+      if (el) el.selectionStart = el.selectionEnd = caret
+    })
+  }
+
+  // Make the textarea feel like a real Python editor: 4-space soft tabs,
+  // Shift+Tab to dedent (how you "close"/leave a block), Enter that keeps the
+  // current indent and adds one level after a line ending in ":", and a
+  // Backspace that eats a whole soft tab.
+  const handleKeyDown = (e) => {
+    const el = e.target
+    const start = el.selectionStart
+    const end = el.selectionEnd
+
     if (e.key === 'Tab') {
       e.preventDefault()
-      const el = e.target
-      const start = el.selectionStart
-      const end = el.selectionEnd
-      const next = code.slice(0, start) + '    ' + code.slice(end)
-      setCode(next)
-      requestAnimationFrame(() => {
-        el.selectionStart = el.selectionEnd = start + 4
-      })
+      if (e.shiftKey) {
+        const lineStart = code.lastIndexOf('\n', start - 1) + 1
+        const lead = code.slice(lineStart).match(/^ {1,4}/)
+        if (lead) {
+          const n = lead[0].length
+          apply(code.slice(0, lineStart) + code.slice(lineStart + n), Math.max(lineStart, start - n))
+        }
+      } else {
+        apply(code.slice(0, start) + '    ' + code.slice(end), start + 4)
+      }
+      return
+    }
+
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      const lineStart = code.lastIndexOf('\n', start - 1) + 1
+      const lineToCaret = code.slice(lineStart, start)
+      let indent = (lineToCaret.match(/^[ \t]*/) || [''])[0]
+      if (/:\s*$/.test(lineToCaret)) indent += '    '
+      const insert = '\n' + indent
+      apply(code.slice(0, start) + insert + code.slice(end), start + insert.length)
+      return
+    }
+
+    if (e.key === 'Backspace' && start === end) {
+      const lineStart = code.lastIndexOf('\n', start - 1) + 1
+      if (start - lineStart >= 4 && code.slice(start - 4, start) === '    ') {
+        e.preventDefault()
+        apply(code.slice(0, start - 4) + code.slice(start), start - 4)
+      }
     }
   }
+
+  const lineCount = code.split('\n').length
+  const rows = Math.max(6, lineCount + 1)
 
   const run = async () => {
     setRunning(true)
@@ -92,14 +135,25 @@ export default function CodeChallenge({ step, onSolved }) {
       )}
 
       <div className="editor-wrap">
-        <textarea
-          className="editor"
-          value={code}
-          spellCheck={false}
-          onChange={(e) => setCode(e.target.value)}
-          onKeyDown={handleTab}
-          rows={Math.max(6, code.split('\n').length + 1)}
-        />
+        <div className="code-editor">
+          <div className="gutter" aria-hidden="true">
+            {Array.from({ length: rows }, (_, i) => (
+              <span key={i} className={i < lineCount ? '' : 'gutter-empty'}>
+                {i < lineCount ? i + 1 : ''}
+              </span>
+            ))}
+          </div>
+          <textarea
+            ref={taRef}
+            className="editor"
+            value={code}
+            spellCheck={false}
+            wrap="off"
+            onChange={(e) => setCode(e.target.value)}
+            onKeyDown={handleKeyDown}
+            rows={rows}
+          />
+        </div>
       </div>
 
       <div className="challenge-actions">

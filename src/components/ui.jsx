@@ -56,12 +56,20 @@ export function RichText({ text }) {
 }
 
 export function CodeBlock({ code, label }) {
+  const lines = String(code ?? '').replace(/\n+$/, '').split('\n')
   return (
     <div className="code-block">
       {label && <div className="code-label">{label}</div>}
-      <pre>
-        <code>{code}</code>
-      </pre>
+      <div className="code-scroll">
+        <div className="code-gutter" aria-hidden="true">
+          {lines.map((_, i) => (
+            <span key={i}>{i + 1}</span>
+          ))}
+        </div>
+        <pre>
+          <code>{lines.join('\n')}</code>
+        </pre>
+      </div>
     </div>
   )
 }
