@@ -102,39 +102,9 @@ The app lives at the **repository root** (there is no nested app folder):
 
 ---
 
-## Run it
+### Test it yourself
 
-```bash
-npm install
-npm run dev
-```
-
-Then open the printed URL. To use it on your **phone**, make sure the phone is
-on the same Wi-Fi and open `http://<your-computer-ip>:5173`. In the browser
-menu choose **"Add to Home Screen"** — now it launches fullscreen like a real
-app.
-
-Production build:
-
-```bash
-npm run build      # outputs static files to dist/
-npm run preview    # serve the built app locally
-```
-
-Because the build is fully static, you can host it for free anywhere.
-
-### Get a public URL (test it on your phone)
-
-The repo ships ready-to-go configs at the root so you can deploy straight from a
-phone browser — these work even with a **private** repo:
-
-- **Netlify** (`netlify.toml`): go to [app.netlify.com](https://app.netlify.com)
-  → *Add new site* → *Import an existing project* → connect GitHub → pick this
-  repo → **Deploy**. You get a `https://<name>.netlify.app` URL.
-- **Vercel** (`vercel.json`): go to [vercel.com/new](https://vercel.com/new) →
-  import this repo → **Deploy**. You get a `https://<name>.vercel.app` URL.
-
-Both read the config automatically. Open the URL on your phone and **Add to
+Open the URL [learn-python-taupe.vercel.app](https://learn-python-taupe.vercel.app) on your phone and **Add to
 Home Screen**.
 
 > **Note:** The first time you open a code challenge, the browser downloads the
