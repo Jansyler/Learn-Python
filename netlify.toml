@@ -1,0 +1,25 @@
+# Netlify deploy config for the PyLingo app (lives in the pylingo/ subfolder).
+#
+# One-time setup from your phone's browser:
+#   1. Go to app.netlify.com → "Add new site" → "Import an existing project"
+#   2. Connect GitHub and pick the Jansyler/Agenti repo
+#   3. Netlify reads this file automatically — just click Deploy
+#   4. You'll get a public URL like https://<name>.netlify.app you can open
+#      on your phone (and "Add to Home Screen").
+#
+# Private repos work fine on Netlify's free tier.
+
+[build]
+  base = "pylingo"
+  command = "npm run build"
+  publish = "pylingo/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single-page app: serve index.html for any unknown path (only kicks in when
+# no real file matches, so assets/manifest/sw still load normally).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

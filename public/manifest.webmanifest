@@ -1,0 +1,19 @@
+{
+  "name": "PyLingo — Learn Python",
+  "short_name": "PyLingo",
+  "description": "Learn Python the fun way: bite-sized lessons up to real LeetCode problems.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#58cc02",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
