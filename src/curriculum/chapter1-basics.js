@@ -7,12 +7,12 @@ const chapter = {
   title: 'Python Basics',
   subtitle: 'Start here — learn the building blocks',
   color: '#58cc02',
-  emoji: '🌱',
+  icon: 'seedling',
   lessons: [
     {
       id: 'b1-print',
       title: 'Hello, Python',
-      icon: '👋',
+      icon: 'wave',
       xp: 10,
       steps: [
         {
@@ -58,7 +58,7 @@ const chapter = {
     {
       id: 'b1-vars',
       title: 'Variables & Types',
-      icon: '📦',
+      icon: 'box',
       xp: 12,
       steps: [
         {
@@ -112,7 +112,7 @@ const chapter = {
     {
       id: 'b1-numbers',
       title: 'Numbers & Math',
-      icon: '🔢',
+      icon: 'hash',
       xp: 12,
       steps: [
         {
@@ -160,7 +160,7 @@ const chapter = {
     {
       id: 'b1-strings',
       title: 'Strings',
-      icon: '🔤',
+      icon: 'type',
       xp: 14,
       steps: [
         {
@@ -213,7 +213,7 @@ const chapter = {
     {
       id: 'b1-bool',
       title: 'Booleans & Comparisons',
-      icon: '⚖️',
+      icon: 'scale',
       xp: 12,
       steps: [
         {
@@ -261,7 +261,7 @@ const chapter = {
     {
       id: 'b1-if',
       title: 'Making Decisions (if)',
-      icon: '🔀',
+      icon: 'shuffle',
       xp: 14,
       steps: [
         {
@@ -311,7 +311,7 @@ const chapter = {
     {
       id: 'b1-loops',
       title: 'Loops',
-      icon: '🔁',
+      icon: 'loop',
       xp: 16,
       steps: [
         {
@@ -358,7 +358,7 @@ const chapter = {
     {
       id: 'b1-func',
       title: 'Functions',
-      icon: '🧩',
+      icon: 'puzzle',
       xp: 16,
       steps: [
         {
@@ -406,7 +406,7 @@ const chapter = {
     {
       id: 'b1-lists',
       title: 'Lists',
-      icon: '📋',
+      icon: 'list',
       xp: 16,
       steps: [
         {
@@ -453,7 +453,7 @@ const chapter = {
     {
       id: 'b1-dicts',
       title: 'Dictionaries',
-      icon: '🗂️',
+      icon: 'folder',
       xp: 18,
       steps: [
         {

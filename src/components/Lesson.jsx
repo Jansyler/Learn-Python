@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { RichText, CodeBlock, Button } from './ui.jsx'
+import { Icon } from './icons.jsx'
 import CodeChallenge from './CodeChallenge.jsx'
 
 const START_HEARTS = 5
 
-// The lesson player: walks through steps one at a time, Duolingo style.
 export default function Lesson({ lesson, onExit, onComplete }) {
   const [index, setIndex] = useState(0)
   const [hearts, setHearts] = useState(START_HEARTS)
@@ -30,9 +30,13 @@ export default function Lesson({ lesson, onExit, onComplete }) {
     const stars = hearts >= 5 ? 3 : hearts >= 3 ? 2 : 1
     return (
       <div className="lesson-done">
-        <div className="done-emoji">🎉</div>
+        <div className="done-icon"><Icon name="party" /></div>
         <h1>Lesson complete!</h1>
-        <div className="stars-big">{'⭐'.repeat(stars)}{'·'.repeat(3 - stars)}</div>
+        <div className="stars-big">
+          {Array.from({ length: 3 }, (_, i) => (
+            <Icon key={i} name="starFilled" color={i < stars ? 'var(--yellow)' : 'var(--line)'} />
+          ))}
+        </div>
         <p className="done-xp">+{lesson.xp} XP</p>
         <p className="done-sub">{hearts} / {START_HEARTS} hearts left</p>
         <Button full onClick={() => onComplete(lesson, stars)}>Continue</Button>
@@ -43,11 +47,18 @@ export default function Lesson({ lesson, onExit, onComplete }) {
   return (
     <div className="lesson">
       <div className="lesson-top">
-        <button className="quit" onClick={onExit} aria-label="Quit lesson">✕</button>
+        <button className="quit" onClick={onExit} aria-label="Quit lesson">
+          <Icon name="x" />
+        </button>
         <div className="progress-bar">
           <div className="progress-fill" style={{ width: `${progress}%` }} />
         </div>
-        <div className="hearts">{'❤️'.repeat(hearts)}{'🤍'.repeat(START_HEARTS - hearts)}</div>
+        <div className="hearts">
+          {Array.from({ length: START_HEARTS }, (_, i) => (
+            <Icon key={i} name={i < hearts ? 'heartFull' : 'heartEmpty'}
+              color={i < hearts ? 'var(--red)' : 'var(--line)'} />
+          ))}
+        </div>
       </div>
 
       <div className="lesson-body">
@@ -108,7 +119,7 @@ function ChoiceStep({ step, onSolved, onWrong }) {
   const answered = picked !== null
 
   const choose = (i) => {
-    if (correct) return // lock once correct
+    if (correct) return
     setPicked(i)
     if (i === step.answer) onSolved()
     else onWrong()
@@ -117,7 +128,9 @@ function ChoiceStep({ step, onSolved, onWrong }) {
   return (
     <div className="choice">
       <h2 className="step-title">
-        {step.type === 'predict' ? '🔮 Predict the output' : step.prompt}
+        {step.type === 'predict'
+          ? <><Icon name="crystal" style={{ verticalAlign: 'middle', marginRight: '0.35em' }} />Predict the output</>
+          : step.prompt}
       </h2>
       {step.type === 'predict' && <p className="sub-prompt">{step.prompt}</p>}
       {step.code && <CodeBlock code={step.code} />}
@@ -135,7 +148,8 @@ function ChoiceStep({ step, onSolved, onWrong }) {
       </div>
       {answered && (
         <div className={`explanation ${correct ? 'good' : 'try'}`}>
-          {correct ? '✅ ' : '❌ Not quite. '}
+          <Icon name={correct ? 'checkCircle' : 'xCircle'} style={{ verticalAlign: 'middle', marginRight: '0.35em' }} />
+          {!correct && 'Not quite. '}
           {step.explanation}
         </div>
       )}
@@ -145,7 +159,7 @@ function ChoiceStep({ step, onSolved, onWrong }) {
 
 function FillStep({ step, onSolved, onWrong }) {
   const [value, setValue] = useState('')
-  const [state, setState] = useState(null) // 'good' | 'bad'
+  const [state, setState] = useState(null)
 
   const accepts = (step.answers || []).map((a) =>
     step.caseInsensitive ? a.toLowerCase() : a
@@ -183,10 +197,16 @@ function FillStep({ step, onSolved, onWrong }) {
       </div>
       <Button onClick={check} disabled={state === 'good'}>Check</Button>
       {state === 'good' && (
-        <div className="explanation good">✅ {step.explanation}</div>
+        <div className="explanation good">
+          <Icon name="checkCircle" style={{ verticalAlign: 'middle', marginRight: '0.35em' }} />
+          {step.explanation}
+        </div>
       )}
       {state === 'bad' && (
-        <div className="explanation try">❌ Try again. {step.hint || ''}</div>
+        <div className="explanation try">
+          <Icon name="xCircle" style={{ verticalAlign: 'middle', marginRight: '0.35em' }} />
+          Try again. {step.hint || ''}
+        </div>
       )}
     </div>
   )

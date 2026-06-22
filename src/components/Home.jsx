@@ -1,8 +1,7 @@
 import React from 'react'
 import { chapters, isLessonUnlocked } from '../curriculum/index.js'
+import { Icon } from './icons.jsx'
 
-// The "learning path" — a vertical tree of chapters and lessons, with locks,
-// stars and a gentle Duolingo-style zig-zag.
 export default function Home({ progress, onPickLesson, onReset }) {
   const totalDone = Object.keys(progress.completed).length
 
@@ -10,12 +9,16 @@ export default function Home({ progress, onPickLesson, onReset }) {
     <div className="home">
       <header className="home-header">
         <div className="brand">
-          <span className="brand-logo">🐍</span>
+          <span className="brand-logo"><Icon name="snake" /></span>
           <span className="brand-name">PyLingo</span>
         </div>
         <div className="stats">
-          <span className="stat" title="Day streak">🔥 {progress.streak}</span>
-          <span className="stat" title="Total XP">⭐ {progress.xp}</span>
+          <span className="stat" title="Day streak">
+            <Icon name="fire" color="var(--orange)" /> {progress.streak}
+          </span>
+          <span className="stat" title="Total XP">
+            <Icon name="starFilled" color="var(--yellow)" /> {progress.xp}
+          </span>
         </div>
       </header>
 
@@ -24,7 +27,7 @@ export default function Home({ progress, onPickLesson, onReset }) {
       {chapters.map((ch) => (
         <section className="chapter" key={ch.id}>
           <div className="chapter-banner" style={{ background: ch.color }}>
-            <div className="chapter-emoji">{ch.emoji}</div>
+            <div className="chapter-icon"><Icon name={ch.icon} /></div>
             <div>
               <h2>{ch.title}</h2>
               <p>{ch.subtitle}</p>
@@ -46,13 +49,21 @@ export default function Home({ progress, onPickLesson, onReset }) {
                     onClick={() => unlocked && onPickLesson(lesson.id)}
                   >
                     <span className="node-icon">
-                      {done ? '✓' : unlocked ? lesson.icon : '🔒'}
+                      {done
+                        ? <Icon name="check" />
+                        : unlocked
+                          ? <Icon name={lesson.icon} />
+                          : <Icon name="lock" />}
                     </span>
                   </button>
                   <div className="node-label">
                     <span className="node-title">{lesson.title}</span>
                     {stars > 0 && (
-                      <span className="node-stars">{'⭐'.repeat(stars)}</span>
+                      <span className="node-stars">
+                        {Array.from({ length: stars }, (_, i) => (
+                          <Icon key={i} name="starFilled" color="var(--yellow)" />
+                        ))}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -65,7 +76,7 @@ export default function Home({ progress, onPickLesson, onReset }) {
       <footer className="home-footer">
         <p>{totalDone} lessons completed</p>
         <button className="reset" onClick={onReset}>Reset progress</button>
-        <p className="free-note">Free forever. Replace doomscrolling with leveling up. 🐍</p>
+        <p className="free-note">Free forever. Replace doomscrolling with leveling up. <Icon name="snake" style={{ verticalAlign: 'middle' }} /></p>
       </footer>
     </div>
   )

@@ -7,12 +7,12 @@ const chapter = {
   title: 'Stack & Binary Search',
   subtitle: 'Matching, monotonic stacks & halving the search',
   color: '#ff5fa2',
-  emoji: '🥞',
+  icon: 'stack',
   lessons: [
     {
       id: 'lc-valid-parens',
       title: 'Valid Parentheses',
-      icon: '🔗',
+      icon: 'link',
       xp: 28,
       steps: [
         {
@@ -70,7 +70,7 @@ const chapter = {
     {
       id: 'lc-binary-search',
       title: 'Binary Search',
-      icon: '🎯',
+      icon: 'target',
       xp: 30,
       steps: [
         {
@@ -131,7 +131,7 @@ const chapter = {
     {
       id: 'lc-daily-temps',
       title: 'Daily Temperatures',
-      icon: '🌡️',
+      icon: 'thermometer',
       xp: 40,
       steps: [
         {

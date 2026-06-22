@@ -6,12 +6,12 @@ const chapter = {
   title: 'Math & Bit Tricks',
   subtitle: 'XOR, overflow & number puzzles',
   color: '#00c2a8',
-  emoji: '🔣',
+  icon: 'hash',
   lessons: [
     {
       id: 'lc-fizzbuzz',
       title: 'Fizz Buzz',
-      icon: '🥤',
+      icon: 'cup',
       xp: 22,
       steps: [
         {
@@ -52,7 +52,7 @@ const chapter = {
     {
       id: 'lc-single-number',
       title: 'Single Number',
-      icon: '🦄',
+      icon: 'sparkle',
       xp: 30,
       steps: [
         {
@@ -105,7 +105,7 @@ const chapter = {
     {
       id: 'lc-reverse-integer',
       title: 'Reverse Integer',
-      icon: '🔁',
+      icon: 'loop',
       xp: 34,
       steps: [
         {
