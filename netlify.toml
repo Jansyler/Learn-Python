@@ -2,7 +2,7 @@
 #
 # One-time setup from your phone's browser:
 #   1. Go to app.netlify.com → "Add new site" → "Import an existing project"
-#   2. Connect GitHub and pick the Jansyler/Learn-Python repo
+#   2. Connect GitHub and pick this repo
 #   3. Netlify reads this file automatically — just click Deploy
 #   4. You'll get a public URL like https://<name>.netlify.app you can open
 #      on your phone (and "Add to Home Screen").
