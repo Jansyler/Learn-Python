@@ -2,7 +2,7 @@
 // Patterns that level you up: Kadane's, sliding window, grouping, prefix products.
 
 const chapter = {
-  id: 'ch4',
+  id: 'ch6',
   title: 'LeetCode · Medium',
   subtitle: 'Patterns that win interviews',
   color: '#ff9600',

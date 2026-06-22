@@ -3,7 +3,7 @@
 // binary search for anything sorted.
 
 const chapter = {
-  id: 'ch5',
+  id: 'ch7',
   title: 'Stack & Binary Search',
   subtitle: 'Matching, monotonic stacks & halving the search',
   color: '#ff5fa2',

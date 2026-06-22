@@ -30,11 +30,11 @@ export default function Lesson({ lesson, onExit, onComplete }) {
     const stars = hearts >= 5 ? 3 : hearts >= 3 ? 2 : 1
     return (
       <div className="lesson-done">
-        <div className="done-icon"><Icon name="party" /></div>
+        <div className="done-icon"><Icon name="trophy" /></div>
         <h1>Lesson complete!</h1>
         <div className="stars-big">
           {Array.from({ length: 3 }, (_, i) => (
-            <Icon key={i} name="starFilled" color={i < stars ? 'var(--yellow)' : 'var(--line)'} />
+            <Icon key={i} name="starFilled" color={i < stars ? 'var(--gold)' : 'var(--line)'} />
           ))}
         </div>
         <p className="done-xp">+{lesson.xp} XP</p>

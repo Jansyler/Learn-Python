@@ -5,7 +5,7 @@ const base = {
   viewBox: '0 0 24 24',
   fill: 'none',
   stroke: 'currentColor',
-  strokeWidth: '2',
+  strokeWidth: '2.25',
   strokeLinecap: 'round',
   strokeLinejoin: 'round',
   'aria-hidden': 'true',
@@ -21,15 +21,24 @@ function Svg({ size, color, className, style, children }) {
 
 const defs = {
   // ── Brand / persistent UI ──────────────────────────────────────────────────
+  // A cleaner coiled-snake mark with a flicking tongue (reads well even tiny).
   snake: (p) => <Svg {...p}>
-    <path d="M3 8c0-2.2 1.8-4 4-4h1c2.2 0 4 1.8 4 4s-1.8 4-4 4h-1c-2.2 0-4 1.8-4 4s1.8 4 4 4h1c2.2 0 4-1.8 4-4" />
-    <circle cx="19" cy="17" r="2" />
-    <path d="M15 17h2" />
+    <path d="M6 4V2.1M5.1 1.2 6 2.1l.9-.9" />
+    <path d="M6 4C2.6 4 2.6 9.4 6 9.4h7c3.4 0 3.4 5.5 0 5.5H8c-3.4 0-3.4 5.6 0 5.6h4" />
   </Svg>,
 
-  fire: (p) => <Svg {...p}>
-    <path d="M12 2c0 0-5 5-5 10a5 5 0 0 0 10 0C17 7 12 2 12 2z" />
-    <path d="M12 12c0 0-2.5 2.5-2.5 4.5a2.5 2.5 0 0 0 5 0C14.5 14.5 12 12 12 12z" fill="currentColor" stroke="none" />
+  fire: (p) => <Svg {...p} fill="currentColor" stroke="none">
+    <path d="M12 2c.7 2.4-.5 4-1.9 5.4C8.6 9 7 10.6 7 13.5a5 5 0 0 0 10 0c0-2-1-3.7-2-5-.4 1-1 1.7-1.8 2 .7-2.5-.2-4.7-1.2-6C12.1 6.5 12 4.1 12 2z" />
+  </Svg>,
+
+  bolt: (p) => <Svg {...p} fill="currentColor" stroke="none">
+    <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" />
+  </Svg>,
+
+  trophy: (p) => <Svg {...p}>
+    <path d="M7 4h10v5a5 5 0 0 1-10 0V4z" />
+    <path d="M7 5H4.5v1.5A3.5 3.5 0 0 0 8 10M17 5h2.5v1.5A3.5 3.5 0 0 1 16 10" />
+    <path d="M12 14v4M8.5 21h7M9.5 21l.5-3h4l.5 3" />
   </Svg>,
 
   star: (p) => <Svg {...p}>

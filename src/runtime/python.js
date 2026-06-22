@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// PyLingo Python runtime
+// Pythopia Python runtime
 //
 // We run REAL Python in the browser using Pyodide (CPython compiled to
 // WebAssembly). This means the coding challenges actually execute your code

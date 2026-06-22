@@ -158,6 +158,128 @@ const chapter = {
           solutionNote: 'enumerate hands you both the position and the value each step.'
         }
       ]
+    },
+
+    {
+      id: 'b2-tuples',
+      title: 'Tuples & Unpacking',
+      icon: 'link',
+      xp: 16,
+      steps: [
+        {
+          type: 'concept',
+          title: 'Group values that travel together',
+          body: "A **tuple** is like a list you cannot change: `point = (3, 4)`. The magic is **unpacking** — assign several variables at once, which makes swapping values a one-liner.",
+          code: 'point = (3, 4)\nx, y = point        # x=3, y=4\na, b = 1, 2\na, b = b, a          # swap! now a=2, b=1\nprint(a, b)          # 2 1'
+        },
+        {
+          type: 'predict',
+          prompt: 'What is printed?',
+          code: 'a, b = 5, 9\na, b = b, a\nprint(a, b)',
+          options: ['5 9', '9 5', '5 5', '9 9'],
+          answer: 1,
+          explanation: 'The right side (b, a) = (9, 5) is built first, then unpacked into a and b — a clean swap.'
+        },
+        {
+          type: 'code',
+          prompt: 'Swap a pair',
+          description: 'Write swap(a, b) returning a tuple (b, a) — the two values in the opposite order.',
+          hints: ['You can return a tuple directly: return (b, a).'],
+          starter: 'def swap(a, b):\n    pass\n',
+          spec: {
+            functionName: 'swap',
+            tests: [
+              { input: [1, 2], expected: [2, 1] },
+              { input: [9, 4], expected: [4, 9] },
+              { input: [0, 0], expected: [0, 0] }
+            ]
+          },
+          solution: 'def swap(a, b):\n    return (b, a)',
+          solutionNote: 'Returning a tuple is how a function hands back more than one value at once.'
+        }
+      ]
+    },
+
+    {
+      id: 'b2-dictcomp',
+      title: 'Dict & Set Builds',
+      icon: 'sparkle',
+      xp: 18,
+      steps: [
+        {
+          type: 'concept',
+          title: 'Comprehensions for dicts and sets',
+          body: "The comprehension idea works beyond lists:\n- `{k: v for ...}` builds a **dict**\n- `{x for ...}` builds a **set** (unique values)\n\nGreat for turning a sequence into a lookup table in one line.",
+          code: 'nums = [1, 2, 3]\nprint({n: n*n for n in nums})  # {1:1, 2:4, 3:9}\nwords = ["a", "bb", "a"]\nprint({w for w in words})      # {\'a\', \'bb\'}'
+        },
+        {
+          type: 'predict',
+          prompt: 'How many items are in this set?',
+          code: 'print(len({len(w) for w in ["a", "bb", "cc", "ddd"]}))',
+          options: ['4', '3', '2', '1'],
+          answer: 1,
+          explanation: 'The lengths are 1, 2, 2, 3. A set keeps only unique values: {1, 2, 3} — three items.'
+        },
+        {
+          type: 'code',
+          prompt: 'Map numbers to squares',
+          description: 'Write square_map(nums) returning a dict mapping each number to its square.',
+          examples: [{ in: '[1, 2, 3]', out: '{1: 1, 2: 4, 3: 9}' }],
+          hints: ['Use a dict comprehension: {n: n*n for n in nums}.'],
+          starter: 'def square_map(nums):\n    pass\n',
+          spec: {
+            functionName: 'square_map',
+            tests: [
+              { input: [[1, 2, 3]], expected: { 1: 1, 2: 4, 3: 9 } },
+              { input: [[]], expected: {} },
+              { input: [[5]], expected: { 5: 25 } }
+            ]
+          },
+          solution: 'def square_map(nums):\n    return {n: n * n for n in nums}',
+          solutionNote: 'A dict comprehension builds a whole lookup table in a single, readable line.'
+        }
+      ]
+    },
+
+    {
+      id: 'b2-sorting',
+      title: 'Sorting',
+      icon: 'trend',
+      xp: 18,
+      steps: [
+        {
+          type: 'concept',
+          title: 'sorted() and the key trick',
+          body: "`sorted(seq)` returns a new sorted list. Add `reverse=True` for descending. The real power is `key=` — a function that decides what to sort *by* (e.g. length, or the second item).",
+          code: 'print(sorted([3, 1, 2]))               # [1, 2, 3]\nprint(sorted([3, 1, 2], reverse=True)) # [3, 2, 1]\nprint(sorted(["bbb", "a", "cc"], key=len)) # [\'a\', \'cc\', \'bbb\']'
+        },
+        {
+          type: 'predict',
+          prompt: 'What is printed?',
+          code: 'print(sorted([5, 2, 8, 1])[0])',
+          options: ['8', '1', '5', '2'],
+          answer: 1,
+          explanation: 'Sorting gives [1, 2, 5, 8]; index 0 is the smallest, 1.'
+        },
+        {
+          type: 'code',
+          prompt: 'Sort by length',
+          description: 'Write by_length(words) returning the words sorted from shortest to longest. Ties keep their original order.',
+          approach: 'Pass key=len to sorted so it compares the length of each word instead of the word itself.',
+          hints: ['sorted(words, key=len) sorts by length.'],
+          starter: 'def by_length(words):\n    pass\n',
+          spec: {
+            functionName: 'by_length',
+            tests: [
+              { input: [['bbb', 'a', 'cc']], expected: ['a', 'cc', 'bbb'] },
+              { input: [['hi', 'a']], expected: ['a', 'hi'] },
+              { input: [[]], expected: [] }
+            ]
+          },
+          solution: 'def by_length(words):\n    return sorted(words, key=len)',
+          solutionNote: 'Python’s sort is stable, so equal-length words stay in their original order.'
+        }
+      ]
     }
   ]
 }

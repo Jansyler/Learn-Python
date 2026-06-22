@@ -2,7 +2,7 @@
 // Classic "gotcha" problems that teach modular arithmetic, XOR and overflow.
 
 const chapter = {
-  id: 'ch7',
+  id: 'ch9',
   title: 'Math & Bit Tricks',
   subtitle: 'XOR, overflow & number puzzles',
   color: '#00c2a8',

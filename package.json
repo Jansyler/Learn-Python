@@ -1,9 +1,9 @@
 {
-  "name": "pylingo",
+  "name": "pythopia",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Learn Python the Duolingo way — bite-sized lessons up to real LeetCode problems, running real Python in your browser.",
+  "description": "Learn Python with bite-sized, game-like lessons up to real LeetCode problems, running real Python in your browser.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

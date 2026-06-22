@@ -3,7 +3,7 @@
 // find the recurrence, build up the answer.
 
 const chapter = {
-  id: 'ch6',
+  id: 'ch8',
   title: 'Dynamic Programming',
   subtitle: 'Build big answers from small ones',
   color: '#7c4dff',

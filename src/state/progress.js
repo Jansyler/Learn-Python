@@ -2,7 +2,10 @@
 // Progress + gamification, persisted in localStorage (per device, no account).
 // ---------------------------------------------------------------------------
 
-const KEY = 'pylingo:progress:v1'
+const KEY = 'pythopia:progress:v1'
+// Earlier builds saved under a different key; we read it once so nobody loses
+// their streak or stars across the rename.
+const LEGACY_KEYS = ['pylingo:progress:v1']
 
 const DEFAULT = {
   xp: 0,
@@ -24,7 +27,13 @@ function dayDiff(a, b) {
 
 export function loadProgress() {
   try {
-    const raw = localStorage.getItem(KEY)
+    let raw = localStorage.getItem(KEY)
+    if (!raw) {
+      for (const k of LEGACY_KEYS) {
+        const old = localStorage.getItem(k)
+        if (old) { raw = old; break }
+      }
+    }
     if (!raw) return { ...DEFAULT }
     return { ...DEFAULT, ...JSON.parse(raw) }
   } catch {
