@@ -1,21 +1,21 @@
-# PyLingo — Learn Python the Duolingo way
+# PyQuest — Learn Python instead of Doomscrolling
 
 **Free. Forever. For everyone.**
 
-PyLingo turns learning Python into short, addictive, game-like lessons — the
+PyQuest turns learning Python into short, addictive, game-like lessons — the
 same dopamine loop that keeps you doomscrolling, pointed at something that
 actually makes you better. Bite-sized cards, streaks, XP and hearts carry you
 from `print("hello")` all the way to real **LeetCode** interview problems that
 run and grade your code instantly, right on your phone.
 
 > The idea: replace 20 minutes of mindless scrolling with 20 minutes of
-> leveling up. No paywall, no account, no ads — just you getting good at Python.
+> leveling up. No paywall, no account, no ads — just you getting good at Python.return n
 
 ---
 
 ## What it does
 
-- **A learning path, Duolingo-style.** Chapters unlock lesson by lesson. Each
+- **A learning path** Chapters unlock lesson by lesson. Each
   node shows your stars; finish one to open the next.
 - **Lessons are a mix of step types**, so it never feels like a lecture:
   - **Concept cards** — short, plain-English explanations with example code
@@ -37,7 +37,7 @@ run and grade your code instantly, right on your phone.
 
 ## How it's made (the stack)
 
-PyLingo is intentionally a **small, readable codebase** — it's also meant to be
+PyQuest is intentionally a **small, readable codebase** — it's also meant to be
 a thing you can learn *from*.
 
 | Layer            | Choice                        | Why |
@@ -46,7 +46,7 @@ a thing you can learn *from*.
 | Python runtime   | **Pyodide (CPython → WASM)**  | Runs *real* Python client-side, so challenges actually execute |
 | Mobile app       | **PWA** (manifest + service worker) | Installable on iOS/Android, works like a native app, offline shell |
 | State / progress | **localStorage**              | No accounts, your data stays on your device |
-| Styling          | **Hand-written CSS**          | Duolingo-inspired, mobile-first, zero UI dependencies |
+| Styling          | **Hand-written CSS**          | mobile-first, zero UI dependencies |
 | Content          | **Plain JS data files**       | Lessons are just data — easy to read, easy to add to |
 
 There is **no server**. The whole thing is static files plus a Python runtime
@@ -56,7 +56,7 @@ free to host and free to run.
 ### Project layout
 
 ```
-pylingo/
+PyQuest/
 ├── index.html
 ├── public/
 │   ├── manifest.webmanifest   # makes it installable
@@ -94,7 +94,7 @@ pylingo/
 ## Run it
 
 ```bash
-cd pylingo
+cd pyquest
 npm install
 npm run dev
 ```
@@ -124,7 +124,7 @@ straight from a phone browser — these work even with a **private** repo:
 - **Vercel** (`vercel.json`): go to [vercel.com/new](https://vercel.com/new) →
   import this repo → **Deploy**. You get a `https://<name>.vercel.app` URL.
 
-Both read the config automatically (the app lives in `pylingo/`, and the config
+Both read the config automatically (the app lives in `pyquest/`, and the config
 points the build there). Open the URL on your phone and **Add to Home Screen**.
 
 > **Note:** The first time you open a code challenge, the browser downloads the
@@ -204,7 +204,7 @@ problems toward the roadmap are exactly the point of this project.
 
 ## Why free?
 
-Learning to code shouldn't be gated behind a subscription. PyLingo is built to
+Learning to code shouldn't be gated behind a subscription. PyQuest is built to
 be hosted for nothing and used by anyone — a student on a cheap phone, someone
 switching careers, or you, replacing five minutes of scrolling with five minutes
 of getting sharper. Share it, fork it, add problems to it.
