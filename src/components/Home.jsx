@@ -8,7 +8,7 @@ import {
 } from '../curriculum/index.js'
 import { Icon } from './icons.jsx'
 
-// Darken a hex colour for the "3D" bottom edge / gradients (Duolingo-style depth).
+// Darken a hex colour for the "3D" bottom edge / gradients (button-style depth).
 function shade(hex, f) {
   const h = hex.replace('#', '')
   const full = h.length === 3 ? h.split('').map((c) => c + c).join('') : h
@@ -29,7 +29,7 @@ export default function Home({ progress, onPickLesson, onReset }) {
       <header className="home-header">
         <div className="brand">
           <span className="brand-logo"><Icon name="snake" /></span>
-          <span className="brand-name">PyLingo</span>
+          <span className="brand-name">Pythopia</span>
         </div>
         <div className="stats">
           <span className="stat streak" title="Day streak">

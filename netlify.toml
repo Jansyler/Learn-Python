@@ -1,8 +1,8 @@
-# Netlify deploy config for the PyLingo app (lives in the pylingo/ subfolder).
+# Netlify deploy config for Pythopia (the app lives at the repository root).
 #
 # One-time setup from your phone's browser:
 #   1. Go to app.netlify.com → "Add new site" → "Import an existing project"
-#   2. Connect GitHub and pick the Jansyler/Agenti repo
+#   2. Connect GitHub and pick the Jansyler/Learn-Python repo
 #   3. Netlify reads this file automatically — just click Deploy
 #   4. You'll get a public URL like https://<name>.netlify.app you can open
 #      on your phone (and "Add to Home Screen").
@@ -10,9 +10,8 @@
 # Private repos work fine on Netlify's free tier.
 
 [build]
-  base = "pylingo"
   command = "npm run build"
-  publish = "pylingo/dist"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"

@@ -1,7 +1,7 @@
-// Minimal service worker so PyLingo is installable and the app shell loads
+// Minimal service worker so Pythopia is installable and the app shell loads
 // even when offline. (The Python runtime itself is fetched from a CDN the
 // first time and then cached by the browser, so the first run needs internet.)
-const CACHE = 'pylingo-shell-v1';
+const CACHE = 'pythopia-shell-v1';
 // Relative to the service worker scope, so it works under a subpath too.
 const SHELL = ['./', './index.html', './icon.svg', './manifest.webmanifest'];
 

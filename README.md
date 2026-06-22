@@ -1,25 +1,28 @@
-# PyLingo — Learn Python the Duolingo way
+# Pythopia — Learn Python by playing
 
 **Free. Forever. For everyone.**
 
-PyLingo turns learning Python into short, addictive, game-like lessons — the
-same dopamine loop that keeps you doomscrolling, pointed at something that
-actually makes you better. Bite-sized cards, streaks, XP and hearts carry you
-from `print("hello")` all the way to real **LeetCode** interview problems that
-run and grade your code instantly, right on your phone.
+Pythopia turns learning Python into short, game-like lessons. Bite-sized cards,
+streaks, XP, hearts and a star rating per lesson carry you from
+`print("hello")` all the way to real **LeetCode** interview problems that run
+and grade your code instantly, right in your browser or on your phone.
 
-> The idea: replace 20 minutes of mindless scrolling with 20 minutes of
+> The idea: replace five minutes of mindless scrolling with five minutes of
 > leveling up. No paywall, no account, no ads — just you getting good at Python.
 
 ---
 
 ## What it does
 
-- **A learning path, Duolingo-style.** Lessons unlock one by one inside a
-  section; finish one to open the next. The **first lesson of every section is
-  always unlocked**, so if you already know the basics you can jump straight
-  ahead to a harder section. Each node shows your stars.
-- **Lessons are a mix of step types**, so it never feels like a lecture:
+- **A learning path you can play your way.** Lessons unlock one-by-one inside a
+  section. The **first lesson of every section is always open**, so if you
+  already know the basics you can jump straight ahead to a harder section. Each
+  node shows your best star rating, and a bouncing **START** marker points at
+  where you left off.
+- **A gentle on-ramp, then the real thing.** The first four sections build real
+  Python and problem-solving skill *before* the first interview problem — no
+  leap straight from "hello world" to LeetCode.
+- **Lessons mix step types**, so it never feels like a lecture:
   - **Concept cards** — short, plain-English explanations with example code
   - **Multiple choice** — quick understanding checks
   - **Predict the output** — read code, guess what it prints
@@ -27,29 +30,29 @@ run and grade your code instantly, right on your phone.
   - **Code challenges** — write real Python, run it against hidden test cases
 - **Real Python, in your browser.** Code challenges execute actual CPython via
   [Pyodide](https://pyodide.org) (Python compiled to WebAssembly). Your solution
-  is run against multiple test cases and graded — no backend, no API keys, no
+  runs against multiple test cases and is graded — no backend, no API keys, no
   setup.
 - **Precise LeetCode problems.** Every coding problem includes the exact
   statement, worked examples, constraints, a guided **approach**, progressive
   **hints**, runnable **tests**, and a fully **explained reference solution**.
-- **Gamified + offline-friendly.** XP, daily streaks, hearts and a star rating
-  per lesson, all saved on your device. Installable as a phone app (PWA).
+- **Gamified + offline-friendly.** XP, a daily streak, hearts and per-lesson
+  stars, all saved on your device. Installable as a phone app (PWA).
 
 ---
 
 ## How it's made (the stack)
 
-PyLingo is intentionally a **small, readable codebase** — it's also meant to be
+Pythopia is intentionally a **small, readable codebase** — it's also meant to be
 a thing you can learn *from*.
 
-| Layer            | Choice                        | Why |
-|------------------|-------------------------------|-----|
-| UI               | **React 18 + Vite**           | Fast, simple, hot-reload dev |
-| Python runtime   | **Pyodide (CPython → WASM)**  | Runs *real* Python client-side, so challenges actually execute |
+| Layer            | Choice                              | Why |
+|------------------|-------------------------------------|-----|
+| UI               | **React 18 + Vite**                 | Fast, simple, hot-reload dev |
+| Python runtime   | **Pyodide (CPython → WASM)**        | Runs *real* Python client-side, so challenges actually execute |
 | Mobile app       | **PWA** (manifest + service worker) | Installable on iOS/Android, works like a native app, offline shell |
-| State / progress | **localStorage**              | No accounts, your data stays on your device |
-| Styling          | **Hand-written CSS**          | Duolingo-inspired, mobile-first, zero UI dependencies |
-| Content          | **Plain JS data files**       | Lessons are just data — easy to read, easy to add to |
+| State / progress | **localStorage**                    | No accounts — your data stays on your device |
+| Styling          | **Hand-written CSS**                | Mobile-first, playful, zero UI dependencies |
+| Content          | **Plain JS data files**             | Lessons are just data — easy to read, easy to add to |
 
 There is **no server**. The whole thing is static files plus a Python runtime
 that the browser downloads once (~10 MB) and then caches. That's what makes it
@@ -57,22 +60,26 @@ free to host and free to run.
 
 ### Project layout
 
+The app lives at the **repository root** (there is no nested app folder):
+
 ```
-pylingo/
+.
 ├── index.html
+├── vite.config.js
+├── netlify.toml / vercel.json   # ready-to-deploy configs
 ├── public/
-│   ├── manifest.webmanifest   # makes it installable
-│   ├── sw.js                  # service worker (offline shell)
+│   ├── manifest.webmanifest     # makes it installable
+│   ├── sw.js                    # service worker (offline shell)
 │   └── icon.svg
 └── src/
     ├── main.jsx
     ├── styles.css
     ├── runtime/
-    │   └── python.js          # Pyodide loader + the grading harness
+    │   └── python.js            # Pyodide loader + the grading harness
     ├── state/
-    │   └── progress.js        # XP / streak / unlocks (localStorage)
-    ├── curriculum/            # ← all the lessons live here, as data
-    │   ├── index.js           # assembles + orders the course (+ unlock rules)
+    │   └── progress.js          # XP / streak / unlocks (localStorage)
+    ├── curriculum/              # ← all the lessons live here, as data
+    │   ├── index.js             # assembles + orders the course + unlock rules
     │   ├── chapter1-basics.js
     │   ├── chapter2-intermediate.js
     │   ├── chapter3-strings.js
@@ -85,12 +92,12 @@ pylingo/
     │   ├── chapter10-two-pointers.js
     │   └── chapter11-sliding-window.js
     └── components/
-        ├── App.jsx            # routes between Home and a Lesson
-        ├── Home.jsx           # the learning path / tree
-        ├── Lesson.jsx         # the lesson player (steps, hearts, XP)
-        ├── CodeChallenge.jsx  # the in-browser code editor + grader
-        ├── icons.jsx          # SVG icon library
-        └── ui.jsx             # tiny shared bits (markdown-lite, buttons)
+        ├── App.jsx              # routes between Home and a Lesson
+        ├── Home.jsx             # the learning path / sections
+        ├── Lesson.jsx           # the lesson player (steps, hearts, XP)
+        ├── CodeChallenge.jsx    # the in-browser code editor + grader
+        ├── icons.jsx            # SVG icon library
+        └── ui.jsx               # tiny shared bits (markdown-lite, buttons)
 ```
 
 ---
@@ -98,7 +105,6 @@ pylingo/
 ## Run it
 
 ```bash
-cd pylingo
 npm install
 npm run dev
 ```
@@ -119,8 +125,8 @@ Because the build is fully static, you can host it for free anywhere.
 
 ### Get a public URL (test it on your phone)
 
-The repo ships ready-to-go configs at the **repo root** so you can deploy
-straight from a phone browser — these work even with a **private** repo:
+The repo ships ready-to-go configs at the root so you can deploy straight from a
+phone browser — these work even with a **private** repo:
 
 - **Netlify** (`netlify.toml`): go to [app.netlify.com](https://app.netlify.com)
   → *Add new site* → *Import an existing project* → connect GitHub → pick this
@@ -128,54 +134,50 @@ straight from a phone browser — these work even with a **private** repo:
 - **Vercel** (`vercel.json`): go to [vercel.com/new](https://vercel.com/new) →
   import this repo → **Deploy**. You get a `https://<name>.vercel.app` URL.
 
-Both read the config automatically (the app lives in `pylingo/`, and the config
-points the build there). Open the URL on your phone and **Add to Home Screen**.
+Both read the config automatically. Open the URL on your phone and **Add to
+Home Screen**.
 
 > **Note:** The first time you open a code challenge, the browser downloads the
 > Python runtime, so that one needs an internet connection. After that it's
-> cached.
+> cached and works offline.
 
 ---
 
-## The curriculum (and the road to full LeetCode coverage)
+## The curriculum
 
-The course is built as a **topic-based roadmap** (inspired by Blind 75 /
-NeetCode 150 and the classic LeetCode patterns), so the order teaches you
-*transferable patterns*, not random problems:
+The course is a **topic-based roadmap** (inspired by the Blind 75 / NeetCode
+patterns), so the order teaches *transferable patterns*, not random problems.
+The first four sections are a gentle on-ramp; everything from section 5 on is
+real interview problems.
 
-The first four sections are a **gentle on-ramp** — you build real Python and
-problem-solving muscle *before* the first interview problem, instead of jumping
-straight from "hello world" to LeetCode.
+| Section | Theme |
+|--------|-------|
+| 1. Python Basics | print, variables, types, math, strings, booleans, if, loops, functions, lists, dicts, type conversion, loop control |
+| 2. Pythonic Tools | slicing, comprehensions, sets, enumerate/zip, tuples & unpacking, dict/set builds, sorting |
+| 3. Strings & Text | string methods, looping over text, split/join, palindromes & word counts |
+| 4. Logic & Problem Solving | branching, loop patterns (max/count), transform & filter, FizzBuzz, second largest |
+| 5. LeetCode · Easy | Two Sum, Palindrome Number, Valid Anagram, Contains Duplicate, Best Time to Buy & Sell Stock, Valid Palindrome |
+| 6. LeetCode · Medium | Maximum Subarray, Group Anagrams, Longest Substring Without Repeats, Product of Array Except Self |
+| 7. Stack & Binary Search | Valid Parentheses, Binary Search, Daily Temperatures |
+| 8. Dynamic Programming | Climbing Stairs, House Robber, Coin Change |
+| 9. Math & Bit Tricks | Fizz Buzz, Single Number, Reverse Integer |
+| 10. Two Pointers | Two Sum II, Valid Palindrome II, Container With Most Water, 3Sum |
+| 11. Sliding Window | Minimum Size Subarray Sum, Longest Repeating Char Replacement, Find All Anagrams |
 
-| Chapter | Theme | Status |
-|--------|-------|--------|
-| 1. Python Basics | print, variables, types, math, strings, booleans, if, loops, functions, lists, dicts, type conversion, loop control | done |
-| 2. Pythonic Tools | slicing, comprehensions, sets, enumerate/zip, tuples & unpacking, dict/set builds, sorting | done |
-| 3. Strings & Text | string methods, looping over text, split/join, palindromes & word counts | done |
-| 4. Logic & Problem Solving | branching, loop patterns (max/count), transform & filter, FizzBuzz, second largest | done |
-| 5. LeetCode · Easy | Two Sum, Palindrome Number, Valid Anagram, Contains Duplicate, Best Time to Buy & Sell Stock, Valid Palindrome | done |
-| 6. LeetCode · Medium | Maximum Subarray, Group Anagrams, Longest Substring Without Repeats, Product of Array Except Self | done |
-| 7. Stack & Binary Search | Valid Parentheses, Binary Search, Daily Temperatures | done |
-| 8. Dynamic Programming | Climbing Stairs, House Robber, Coin Change | done |
-| 9. Math & Bit Tricks | Fizz Buzz, Single Number, Reverse Integer | done |
-| 10. Two Pointers | Two Sum II, Valid Palindrome II, Container With Most Water, 3Sum | done |
-| 11. Sliding Window | Minimum Size Subarray Sum, Longest Repeating Char Replacement, Find All Anagrams | done |
-| 12+. Linked Lists, Trees, Tries, Heaps, Backtracking, Graphs, Greedy, Intervals, Advanced DP | the rest of the ~150–200 canonical problems | in progress |
-
-**An honest note on "all 200 problems":** the goal is full coverage of the
-canonical interview set, and the engine already supports it — but every problem
-here is *hand-written* with a precise description, hints, real test cases and an
+**On the road ahead:** the goal is full coverage of the canonical interview set
+(Linked Lists, Trees, Tries, Heaps, Backtracking, Graphs, Greedy, Intervals,
+Advanced DP, …). The engine already supports it — but every problem here is
+*hand-written* with a precise description, hints, real test cases and an
 explained solution, so they're added in curated batches rather than dumped in
-all at once. What ships today is a complete, polished core (the highest-value
-patterns); the roadmap above is the path to the full set. Adding the next
-problem is deliberately a ~5-minute job (see below), so this list grows fast.
+all at once. Adding the next problem is deliberately a ~5-minute job (see
+below), so this list grows fast.
 
 ---
 
 ## Add a lesson or problem (it's just data)
 
 A lesson is a plain object. To add a coding problem, drop a `code` step into any
-chapter's `lessons` array:
+section's `lessons` array:
 
 ```js
 {
@@ -207,14 +209,15 @@ Grading modes the runtime supports:
   order-insensitive results).
 - **`expectedStdout`** — checks what your code *prints* (great for the basics).
 
-That's it — no test harness to write. Contributions that add well-explained
-problems toward the roadmap are exactly the point of this project.
+That's it — no test harness to write. To add a whole new section, create a
+`chapterN-*.js` file that exports `{ id, title, subtitle, color, icon, lessons }`
+and register it in `src/curriculum/index.js`.
 
 ---
 
 ## Why free?
 
-Learning to code shouldn't be gated behind a subscription. PyLingo is built to
+Learning to code shouldn't be gated behind a subscription. Pythopia is built to
 be hosted for nothing and used by anyone — a student on a cheap phone, someone
 switching careers, or you, replacing five minutes of scrolling with five minutes
 of getting sharper. Share it, fork it, add problems to it.

@@ -18,7 +18,7 @@ export const orderedLessons = chapters.flatMap((ch) =>
   ch.lessons.map((lesson) => ({ ...lesson, chapterId: ch.id, chapterColor: ch.color }))
 )
 
-// Unlock rule (Duolingo-style with "jump ahead"):
+// Unlock rule (with "jump ahead"):
 // - The FIRST lesson of every chapter is always open, so anyone who wants to
 //   try a harder section can dive straight in.
 // - Inside a chapter, a lesson opens once the previous lesson in that same
