@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Home from './Home.jsx'
 import Lesson from './Lesson.jsx'
 import { findLesson } from '../curriculum/index.js'
@@ -13,18 +13,33 @@ export default function App() {
   const [progress, setProgress] = useState(loadProgress)
   const [view, setView] = useState({ name: 'home' })
 
+  // Scroll position on the home path, so we can return the user to the
+  // lesson they came from instead of jumping back to the top.
+  const homeScroll = useRef(0)
+  const restoreScroll = useRef(false)
+
   // Persist progress whenever it changes.
   useEffect(() => {
     saveProgress(progress)
   }, [progress])
 
+  // After returning home, restore the saved scroll position (or stay at top
+  // when entering a lesson). Runs before paint to avoid a visible jump.
+  useLayoutEffect(() => {
+    if (view.name === 'home' && restoreScroll.current) {
+      window.scrollTo(0, homeScroll.current)
+      restoreScroll.current = false
+    }
+  }, [view])
+
   const openLesson = (lessonId) => {
-    window.scrollTo(0, 0)
+    homeScroll.current = window.scrollY
     setView({ name: 'lesson', lessonId })
+    window.scrollTo(0, 0)
   }
 
   const exitToHome = () => {
-    window.scrollTo(0, 0)
+    restoreScroll.current = true
     setView({ name: 'home' })
   }
 
