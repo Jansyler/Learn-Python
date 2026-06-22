@@ -495,6 +495,94 @@ const chapter = {
           solutionNote: 'This frequency-count pattern shows up constantly in real problems.'
         }
       ]
+    },
+
+    {
+      id: 'b1-convert',
+      title: 'Converting Types',
+      icon: 'recycle',
+      xp: 12,
+      steps: [
+        {
+          type: 'concept',
+          title: 'Turn one type into another',
+          body: "Sometimes you have the right value in the wrong type. Convert with `int(...)`, `float(...)` and `str(...)`. This matters because `\"5\"` (text) and `5` (number) behave very differently.",
+          code: 'print(int("5") + 1)    # 6  (text -> number)\nprint(str(5) + "!")    # "5!" (number -> text)\nprint(float("3.5"))    # 3.5'
+        },
+        {
+          type: 'predict',
+          prompt: 'What is printed?',
+          code: 'print("5" + "3")',
+          options: ['8', '53', '"8"', 'Error'],
+          answer: 1,
+          explanation: '`+` between two strings joins them, so "5" + "3" is "53". You would need int() on each to get 8.'
+        },
+        {
+          type: 'mcq',
+          prompt: 'You read "42" from a text box. How do you get the number 42?',
+          options: ['number("42")', 'int("42")', '"42".toInt()', 'float("42")'],
+          answer: 1,
+          explanation: '`int("42")` parses the text into the whole number 42. (`float` would give 42.0.)'
+        },
+        {
+          type: 'code',
+          prompt: 'Add two numeric strings',
+          description: 'Write add_strings(a, b) where a and b are strings like "2" and "3". Return their sum as a number.',
+          hints: ['Convert each with int() before adding.', 'Return int(a) + int(b).'],
+          starter: 'def add_strings(a, b):\n    pass\n',
+          spec: {
+            functionName: 'add_strings',
+            tests: [
+              { input: ['2', '3'], expected: 5 },
+              { input: ['10', '-4'], expected: 6 },
+              { input: ['0', '0'], expected: 0 }
+            ]
+          },
+          solution: 'def add_strings(a, b):\n    return int(a) + int(b)',
+          solutionNote: 'Text from the outside world (like input()) is always a string — convert before doing math.'
+        }
+      ]
+    },
+
+    {
+      id: 'b1-loopctrl',
+      title: 'Loop Control',
+      icon: 'shuffle',
+      xp: 14,
+      steps: [
+        {
+          type: 'concept',
+          title: 'break and continue',
+          body: "Two keywords steer a loop:\n- `break` — stop the loop completely, right now.\n- `continue` — skip the rest of this turn and go to the next item.\n\nThey let you stop early once you have found what you need.",
+          code: 'for n in [1, 2, 3, 4]:\n    if n == 3:\n        break       # stop entirely\n    print(n)        # prints 1, 2'
+        },
+        {
+          type: 'predict',
+          prompt: 'What does this print?',
+          code: 'for n in [1, 2, 3, 4, 5]:\n    if n % 2 == 0:\n        continue\n    print(n)',
+          options: ['1 2 3 4 5', '2 4', '1 3 5', 'nothing'],
+          answer: 2,
+          explanation: '`continue` skips the print for even numbers, so only the odds 1, 3, 5 are printed.'
+        },
+        {
+          type: 'code',
+          prompt: 'First even number',
+          description: 'Write first_even(nums) returning the first even number in the list, or -1 if there is none.',
+          approach: 'Loop through the list; the moment you see an even number, return it. If the loop finishes, return -1.',
+          hints: ['A number is even when n % 2 == 0.', 'return n as soon as you find one — that exits the function.', 'After the loop, return -1.'],
+          starter: 'def first_even(nums):\n    pass\n',
+          spec: {
+            functionName: 'first_even',
+            tests: [
+              { input: [[1, 3, 4, 7]], expected: 4 },
+              { input: [[1, 3, 5]], expected: -1 },
+              { input: [[2]], expected: 2 }
+            ]
+          },
+          solution: 'def first_even(nums):\n    for n in nums:\n        if n % 2 == 0:\n            return n\n    return -1',
+          solutionNote: 'Returning inside the loop is the cleanest "stop as soon as I find it" pattern.'
+        }
+      ]
     }
   ]
 }

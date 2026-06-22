@@ -15,8 +15,10 @@ run and grade your code instantly, right on your phone.
 
 ## What it does
 
-- **A learning path, Duolingo-style.** Chapters unlock lesson by lesson. Each
-  node shows your stars; finish one to open the next.
+- **A learning path, Duolingo-style.** Lessons unlock one by one inside a
+  section; finish one to open the next. The **first lesson of every section is
+  always unlocked**, so if you already know the basics you can jump straight
+  ahead to a harder section. Each node shows your stars.
 - **Lessons are a mix of step types**, so it never feels like a lecture:
   - **Concept cards** — short, plain-English explanations with example code
   - **Multiple choice** — quick understanding checks
@@ -70,16 +72,18 @@ pylingo/
     ├── state/
     │   └── progress.js        # XP / streak / unlocks (localStorage)
     ├── curriculum/            # ← all the lessons live here, as data
-    │   ├── index.js           # assembles + orders the course
+    │   ├── index.js           # assembles + orders the course (+ unlock rules)
     │   ├── chapter1-basics.js
     │   ├── chapter2-intermediate.js
-    │   ├── chapter3-leetcode-easy.js
-    │   ├── chapter4-leetcode-medium.js
-    │   ├── chapter5-stack-search.js
-    │   ├── chapter6-dynamic-programming.js
-    │   ├── chapter7-math-bits.js
-    │   ├── chapter8-two-pointers.js
-    │   └── chapter9-sliding-window.js
+    │   ├── chapter3-strings.js
+    │   ├── chapter4-logic.js
+    │   ├── chapter5-leetcode-easy.js
+    │   ├── chapter6-leetcode-medium.js
+    │   ├── chapter7-stack-search.js
+    │   ├── chapter8-dynamic-programming.js
+    │   ├── chapter9-math-bits.js
+    │   ├── chapter10-two-pointers.js
+    │   └── chapter11-sliding-window.js
     └── components/
         ├── App.jsx            # routes between Home and a Lesson
         ├── Home.jsx           # the learning path / tree
@@ -139,18 +143,24 @@ The course is built as a **topic-based roadmap** (inspired by Blind 75 /
 NeetCode 150 and the classic LeetCode patterns), so the order teaches you
 *transferable patterns*, not random problems:
 
+The first four sections are a **gentle on-ramp** — you build real Python and
+problem-solving muscle *before* the first interview problem, instead of jumping
+straight from "hello world" to LeetCode.
+
 | Chapter | Theme | Status |
 |--------|-------|--------|
-| 1. Python Basics | print, variables, types, math, strings, booleans, if, loops, functions, lists, dicts | done |
-| 2. Pythonic Tools | slicing, comprehensions, sets, enumerate/zip | done |
-| 3. LeetCode · Easy | Two Sum, Palindrome Number, Valid Anagram, Contains Duplicate, Best Time to Buy & Sell Stock, Valid Palindrome | done |
-| 4. LeetCode · Medium | Maximum Subarray, Group Anagrams, Longest Substring Without Repeats, Product of Array Except Self | done |
-| 5. Stack & Binary Search | Valid Parentheses, Binary Search, Daily Temperatures | done |
-| 6. Dynamic Programming | Climbing Stairs, House Robber, Coin Change | done |
-| 7. Math & Bit Tricks | Fizz Buzz, Single Number, Reverse Integer | done |
-| 8. Two Pointers | Two Sum II, Valid Palindrome II, Container With Most Water, 3Sum | done |
-| 9. Sliding Window | Minimum Size Subarray Sum, Longest Repeating Char Replacement, Find All Anagrams | done |
-| 10+. Linked Lists, Trees, Tries, Heaps, Backtracking, Graphs, Greedy, Intervals, Advanced DP | the rest of the ~150–200 canonical problems | in progress |
+| 1. Python Basics | print, variables, types, math, strings, booleans, if, loops, functions, lists, dicts, type conversion, loop control | done |
+| 2. Pythonic Tools | slicing, comprehensions, sets, enumerate/zip, tuples & unpacking, dict/set builds, sorting | done |
+| 3. Strings & Text | string methods, looping over text, split/join, palindromes & word counts | done |
+| 4. Logic & Problem Solving | branching, loop patterns (max/count), transform & filter, FizzBuzz, second largest | done |
+| 5. LeetCode · Easy | Two Sum, Palindrome Number, Valid Anagram, Contains Duplicate, Best Time to Buy & Sell Stock, Valid Palindrome | done |
+| 6. LeetCode · Medium | Maximum Subarray, Group Anagrams, Longest Substring Without Repeats, Product of Array Except Self | done |
+| 7. Stack & Binary Search | Valid Parentheses, Binary Search, Daily Temperatures | done |
+| 8. Dynamic Programming | Climbing Stairs, House Robber, Coin Change | done |
+| 9. Math & Bit Tricks | Fizz Buzz, Single Number, Reverse Integer | done |
+| 10. Two Pointers | Two Sum II, Valid Palindrome II, Container With Most Water, 3Sum | done |
+| 11. Sliding Window | Minimum Size Subarray Sum, Longest Repeating Char Replacement, Find All Anagrams | done |
+| 12+. Linked Lists, Trees, Tries, Heaps, Backtracking, Graphs, Greedy, Intervals, Advanced DP | the rest of the ~150–200 canonical problems | in progress |
 
 **An honest note on "all 200 problems":** the goal is full coverage of the
 canonical interview set, and the engine already supports it — but every problem

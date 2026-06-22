@@ -3,7 +3,7 @@
 // can improve the answer. Turns many O(n^2) problems into O(n).
 
 const chapter = {
-  id: 'ch8',
+  id: 'ch10',
   title: 'Two Pointers',
   subtitle: 'Squeeze from both ends',
   color: '#06b6d4',

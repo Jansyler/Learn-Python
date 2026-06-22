@@ -3,7 +3,7 @@
 // them, plus a guided approach, hints, runnable tests and a full solution.
 
 const chapter = {
-  id: 'ch3',
+  id: 'ch5',
   title: 'LeetCode · Easy',
   subtitle: 'Your first real interview problems',
   color: '#ce82ff',

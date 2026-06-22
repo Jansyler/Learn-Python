@@ -4,7 +4,7 @@
 // subarray problems collapse to O(n) this way.
 
 const chapter = {
-  id: 'ch9',
+  id: 'ch11',
   title: 'Sliding Window',
   subtitle: 'A moving range over your data',
   color: '#f59e0b',
